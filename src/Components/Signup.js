@@ -78,7 +78,7 @@ render(){
               <Input placeholder='Email Address' style={styles.input} onChangeText={email => this.setState({ email: email.trim() })} />
           </Item>
           <Item style={styles.item} regular>
-              <Input placeholder='************' style={styles.input} secureTextEntry={true} onChangeText={password => this.setState({ password: password.trim() })} />
+              <Input placeholder='Password' style={styles.input} secureTextEntry={true} onChangeText={password => this.setState({ password: password.trim() })} />
           </Item>
           
           <Text style={{fontSize: 20, color: 'red'}}>{this.state.error}</Text>                
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
     welcome: {
         fontSize: 50,
         textAlign: 'center',
-        margin: 10,
+        margin:80,
         fontFamily: "serif",
         marginBottom: 25,
     },

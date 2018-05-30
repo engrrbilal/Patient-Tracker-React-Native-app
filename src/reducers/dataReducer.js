@@ -6,6 +6,7 @@ const dataReducerDefaultState = {
     submitAuctionData:[],
     auctionsData:[],
     submitBidData:[],
+    patientsData:[],
     flag:''
 }
 
@@ -17,24 +18,10 @@ export default (state = dataReducerDefaultState, action) => {
                 ...state,
                     usersData:action.data
             })
-            case 'START-SUBMIT-AUCTION':
-            console.log(action.flag)
-            
+            case 'PATIENTS-DATA':
             return ({
                 ...state,
-                    submitAuctionData:action.data,
-                    flag:action.flag
-            })
-            case 'AUCTIONS-DATA':
-            console.log(action.data)
-            return ({
-                ...state,
-                auctionsData:action.data
-            })
-            case 'START-SUBMIT-BID':
-            return ({
-                ...state,
-                    submitBidData:action.data,
+                    patientsData:action.data
             })
             case 'USER-PROFILE-DATA':
             return ({

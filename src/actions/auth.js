@@ -46,19 +46,38 @@ export const startSignUp = (userData = {}) =>{
             // console.warn(userid)
             firebase.database().ref(`Users/${userid}`).once('value')
                 .then((userData) => {
-                    // console.warn("signIn")
-                    // dispatch(signIn({
-                    //     ...user
-                    //  }))
-                    // console.log(userData)
-                    // if(userData.val()){
-                    //     history.push("/home")
-                    // }
-                    // else{
-                    //     signedinUser.delete()
-                    //     alert("User not found")
-                    // }  
                 }
         )}
     )}
     }  
+    // ADD-PATIENT
+export const addPatient = (user) => ({
+    type: 'ADD-PATIENT',
+    user
+  });
+
+export const startAddPatient = (patientData = {}) =>{
+    return dispatch =>{
+        const {
+            patientName='',
+            diasease='',
+            medication= '',
+            cost='',
+            date='',
+          } = patientData;
+          firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                console.log(user.uid)
+                firebase.database().ref(`Users/${user.uid}/Patients/`).push(patientData)
+                .then(()=>{
+                    dispatch(addPatient({
+                        uid:user.uid,
+                        ...patientData
+                     }))
+                     alert("New patient has been added successfully !")
+                     Actions.home();
+                })
+            }
+        })
+    }   
+  }

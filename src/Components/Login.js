@@ -77,7 +77,7 @@ class Login extends React.Component{
               <Input placeholder='Email Address' style={styles.input} onChangeText={email => this.setState({ email: email.trim() })} />
           </Item>
           <Item style={styles.item} regular>
-              <Input placeholder='************' style={styles.input} secureTextEntry={true} onChangeText={password => this.setState({ password: password.trim() })} />
+              <Input placeholder='Password' style={styles.input} secureTextEntry={true} onChangeText={password => this.setState({ password: password.trim() })} />
           </Item>
           
           <Text style={{fontSize: 20, color: 'red'}}>{this.state.error}</Text>                
@@ -114,7 +114,8 @@ class Login extends React.Component{
     welcome: {
         fontSize: 50,
         textAlign: 'center',
-        margin: 10,
+        margin:60,
+        // margin: 10,
         fontFamily: "serif",
         marginBottom: 25,
     },

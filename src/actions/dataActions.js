@@ -21,27 +21,34 @@ export const usersData = (data) => ({
       })
     };
   };
-  //USER-PROFILE-DATA
-  export const userProfileData = (data) => ({
-    type: 'USER-PROFILE-DATA',
-    data
-  });
-  export const getUserProfileData = (test={}) => {
-    console.log(test)
-    return (dispatch) => {
-
+  // PATIENTS-DATA
+export const patientsData = (data) => ({
+  type: 'PATIENTS-DATA',
+  data
+});
+export const getPatientsData = (test={}) => {
+  return (dispatch) => {
+   
       firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-            firebase.database().ref(`Users/${user.uid}`).on("value", snap => {
-                let profileData = snap.val();
-                // console.log(dbdata)
-                dispatch(userProfileData(profileData))
-            })
-        }
-
-    })
-    };
-  };
+          if (user) {
+            firebase.database().ref("Users").on('value',(snapshot) => {
+              const data = [];
+              snapshot.forEach((childSnapshot) => {
+                if(user.uid === childSnapshot.key){
+                  data.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                  });
+                  
+                }
+              });
+              dispatch(patientsData(data));
+      });
+    }
+      
+  });
+};
+}
 // UPDATE-USER
 export const updateUser = (updates) => ({
   type: 'UPDATE-USER',
